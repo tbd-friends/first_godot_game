@@ -1,13 +1,11 @@
+using CanIDoThis.scripts;
 using Godot;
 
 public partial class Player : CharacterBody2D
 {
     [Export] private float MovementSpeed { get; set; } = 25.0f;
-
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-    }
+    [Export] private Cannon Cannon { get; set; }
+    
 
     public override void _PhysicsProcess(double delta)
     {
@@ -25,10 +23,15 @@ public partial class Player : CharacterBody2D
         {
             Position += Vector2.Up * MovementSpeed * (float)delta;
         }
-        
+
         if (Input.IsActionPressed("move_down"))
         {
             Position += Vector2.Down * MovementSpeed * (float)delta;
+        }
+
+        if (Input.IsActionJustPressed("shoot"))
+        {
+            Cannon.Fire();
         }
     }
 }

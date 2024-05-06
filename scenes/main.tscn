@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bonla5yyuajuc"]
+[gd_scene load_steps=14 format=3 uid="uid://bonla5yyuajuc"]
 
 [ext_resource type="Script" path="res://scripts/Managers/GameManager.cs" id="1_bj3dd"]
 [ext_resource type="Script" path="res://scripts/Camera.cs" id="4_4k5at"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dwx44yscfymx4" path="res://tilemaps/tiles.png" id="4_k1dcw"]
 [ext_resource type="Script" path="res://scripts/CameraStop.cs" id="5_2uytr"]
 [ext_resource type="Script" path="res://scripts/Player.cs" id="5_rk2nd"]
+[ext_resource type="Script" path="res://scripts/Cannon.cs" id="6_lolco"]
+[ext_resource type="PackedScene" uid="uid://pro4ia1fjapn" path="res://scenes/components/bullet.tscn" id="7_gbmpo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fcwx5"]
 resource_name = "tiles"
@@ -168,11 +170,12 @@ MovementSpeed = 25.0
 position = Vector2(0, -104)
 shape = SubResource("RectangleShape2D_t7yax")
 
-[node name="Player" type="CharacterBody2D" parent="Camera2D"]
+[node name="Player" type="CharacterBody2D" parent="Camera2D" node_paths=PackedStringArray("Cannon")]
 position = Vector2(-125, -502)
 scale = Vector2(0.988199, 0.993169)
 script = ExtResource("5_rk2nd")
 MovementSpeed = 85.0
+Cannon = NodePath("Cannon")
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D/Player"]
 position = Vector2(134, 582)
@@ -183,6 +186,16 @@ texture = SubResource("AtlasTexture_v05ij")
 position = Vector2(134, 582)
 scale = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(16, -6.8, 16, 8, 15.2, 8, 7.9, 8.8, 3, 15, -4, 15, -4, 12.7, -7, 9, -15.8, 9, -16, -5.4, -4, -13.1)
+
+[node name="Cannon" type="Node2D" parent="Camera2D/Player"]
+position = Vector2(133.576, 574.927)
+scale = Vector2(1.01194, 1.00688)
+script = ExtResource("6_lolco")
+BulletScene = ExtResource("7_gbmpo")
+
+[node name="Spawn" type="Node2D" parent="Camera2D/Player/Cannon"]
+position = Vector2(3.57628e-07, -6.10352e-05)
+scale = Vector2(1.30819, 0.993169)
 
 [node name="Ending" type="Area2D" parent="."]
 position = Vector2(-1, -294)
