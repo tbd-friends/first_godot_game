@@ -1,11 +1,9 @@
-using CanIDoThis.scripts.Managers;
 using Godot;
 
 namespace CanIDoThis.scripts;
 
 public partial class GameManager : Node
 {
-    [Export] private InputManager InputManager;
     [Export] private TileMap WorldMap;
     [Export] private Camera Camera;
 
@@ -22,8 +20,7 @@ public partial class GameManager : Node
     {
         
     }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    
     public override void _Process(double delta)
     {
         if (!_isCameraStopped)

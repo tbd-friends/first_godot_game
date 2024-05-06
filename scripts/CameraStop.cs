@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class CameraStop : Area2D
 {
