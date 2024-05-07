@@ -1,23 +1,17 @@
-﻿using Godot;
+﻿using CanIDoThis.scripts.Contracts;
+using Godot;
 
 namespace CanIDoThis.scripts;
 
-public partial class Cannon : Node
+public partial class Cannon : Node2D, IWeapon
 {
-    [Export] PackedScene BulletScene;
-
-    private Node2D _bulletSpawn;
-
-    public override void _Ready()
-    {
-        _bulletSpawn = GetNode<Node2D>("Spawn");
-    }
+    [Export] private PackedScene BulletScene;
 
     public void Fire()
     {
         Bullet bullet = BulletScene.Instantiate<Bullet>();
 
-        bullet.GlobalPosition = _bulletSpawn.GlobalPosition;
+        bullet.SetOrigin(this);
 
         AddChild(bullet);
     }

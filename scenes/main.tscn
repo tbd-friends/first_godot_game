@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bonla5yyuajuc"]
+[gd_scene load_steps=16 format=3 uid="uid://bonla5yyuajuc"]
 
 [ext_resource type="Script" path="res://scripts/Managers/GameManager.cs" id="1_bj3dd"]
 [ext_resource type="Script" path="res://scripts/Camera.cs" id="4_4k5at"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://scripts/Player.cs" id="5_rk2nd"]
 [ext_resource type="Script" path="res://scripts/Cannon.cs" id="6_lolco"]
 [ext_resource type="PackedScene" uid="uid://pro4ia1fjapn" path="res://scenes/components/bullet.tscn" id="7_gbmpo"]
+[ext_resource type="PackedScene" uid="uid://ffqvjkdtdpuq" path="res://scenes/enemies/tank.tscn" id="9_275k0"]
+[ext_resource type="Script" path="res://scripts/Managers/ScoreKeeper.cs" id="10_tfhsk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fcwx5"]
 resource_name = "tiles"
@@ -147,10 +149,12 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtgx1"]
 size = Vector2(272, 6)
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("WorldMap", "Camera")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("WorldMap", "Camera", "ScoreKeeper")]
+position = Vector2(4, -1)
 script = ExtResource("1_bj3dd")
 WorldMap = NodePath("WorldMap")
 Camera = NodePath("Camera2D")
+ScoreKeeper = NodePath("ScoreKeeper")
 
 [node name="WorldMap" type="TileMap" parent="."]
 scale = Vector2(0.518563, 0.59389)
@@ -178,30 +182,45 @@ MovementSpeed = 85.0
 Cannon = NodePath("Cannon")
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D/Player"]
-position = Vector2(134, 582)
+position = Vector2(133.576, 581.975)
 scale = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_v05ij")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Camera2D/Player"]
-position = Vector2(134, 582)
+position = Vector2(133.576, 581.976)
 scale = Vector2(0.5, 0.5)
-polygon = PackedVector2Array(16, -6.8, 16, 8, 15.2, 8, 7.9, 8.8, 3, 15, -4, 15, -4, 12.7, -7, 9, -15.8, 9, -16, -5.4, -4, -13.1)
+polygon = PackedVector2Array(3.2, -8.8, 13.2, -4.8, 13.2, -3.7, 15.2, -2.7, 15.2, 5.2, 5.7, 5.2, 1.6, 11.2, -2.2, 11.2, -2.2, 9.3, -5.5, 5.2, -15.2, 5.2, -15.2, -2.7, -3.2, -8.7, -3.2, -11.2, 3.2, -11.2)
 
 [node name="Cannon" type="Node2D" parent="Camera2D/Player"]
 position = Vector2(133.576, 574.927)
-scale = Vector2(1.01194, 1.00688)
+scale = Vector2(-3.46635, -81.517)
 script = ExtResource("6_lolco")
 BulletScene = ExtResource("7_gbmpo")
 
-[node name="Spawn" type="Node2D" parent="Camera2D/Player/Cannon"]
-position = Vector2(3.57628e-07, -6.10352e-05)
-scale = Vector2(1.30819, 0.993169)
+[node name="Enemies" type="Node" parent="."]
 
-[node name="Ending" type="Area2D" parent="."]
+[node name="Tank" parent="Enemies" groups=["Enemies"] instance=ExtResource("9_275k0")]
+position = Vector2(120, 422)
+
+[node name="Tank2" parent="Enemies" groups=["Enemies"] instance=ExtResource("9_275k0")]
+position = Vector2(53, 440)
+
+[node name="Tank3" parent="Enemies" groups=["Enemies"] instance=ExtResource("9_275k0")]
+position = Vector2(196, 369)
+
+[node name="Tank4" parent="Enemies" groups=["Enemies"] instance=ExtResource("9_275k0")]
+position = Vector2(62, 331)
+
+[node name="Stops" type="Node" parent="."]
+
+[node name="Ending" type="Area2D" parent="Stops"]
 position = Vector2(-1, -294)
 script = ExtResource("5_2uytr")
 IsFinal = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ending"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stops/Ending"]
 position = Vector2(142, -7)
 shape = SubResource("RectangleShape2D_wtgx1")
+
+[node name="ScoreKeeper" type="Node" parent="."]
+script = ExtResource("10_tfhsk")

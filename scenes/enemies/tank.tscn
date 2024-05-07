@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ffqvjkdtdpuq"]
+
+[ext_resource type="Script" path="res://scripts/Enemies/Enemy.cs" id="1_epae0"]
+[ext_resource type="Texture2D" uid="uid://dwx44yscfymx4" path="res://tilemaps/tiles.png" id="2_d8wdu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32fxe"]
+atlas = ExtResource("2_d8wdu")
+region = Rect2(67, 34, 17, 16)
+
+[node name="Tank" type="Area2D"]
+script = ExtResource("1_epae0")
+Score = 500
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_32fxe")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.50216, 0.5)
+polygon = PackedVector2Array(8.5, 8, -6.9, 8, -8.5, 7.2, -8.5, -7.2, -6.9, -8, 8.5, -8)
+
+[connection signal="area_entered" from="." to="." method="OnUnitHit"]
