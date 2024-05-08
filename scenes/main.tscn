@@ -167,7 +167,7 @@ layer_0/tile_data = PackedInt32Array(0, 131072, 9, 65536, 131072, 9, 131072, 131
 position = Vector2(140, 494)
 zoom = Vector2(2.8, 2.8)
 script = ExtResource("4_4k5at")
-MovementSpeed = 15.0
+MovementSpeed = 20.0
 
 [node name="Stopper" type="Area2D" parent="Camera2D"]
 
@@ -179,7 +179,7 @@ shape = SubResource("RectangleShape2D_t7yax")
 position = Vector2(-125, -502)
 scale = Vector2(0.988199, 0.993169)
 script = ExtResource("5_rk2nd")
-MovementSpeed = 45.0
+MovementSpeed = 50.0
 Cannon = NodePath("Cannon")
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D/Player"]
@@ -215,6 +215,15 @@ position = Vector2(196, 369)
 [node name="Tank4" parent="Enemies" groups=["Enemies"] instance=ExtResource("9_275k0")]
 position = Vector2(62, 331)
 
+[node name="Tank5" parent="Enemies" groups=["Enemies"] instance=ExtResource("9_275k0")]
+position = Vector2(44, 149)
+
+[node name="Tank6" parent="Enemies" groups=["Enemies"] instance=ExtResource("9_275k0")]
+position = Vector2(239, 21)
+
+[node name="Tank7" parent="Enemies" groups=["Enemies"] instance=ExtResource("9_275k0")]
+position = Vector2(62, -150)
+
 [node name="Stops" type="Node" parent="."]
 
 [node name="Ending" type="Area2D" parent="Stops"]
@@ -228,12 +237,3 @@ shape = SubResource("RectangleShape2D_wtgx1")
 
 [node name="ScoreKeeper" type="Node" parent="."]
 script = ExtResource("10_tfhsk")
-
-[node name="Tank" parent="." instance=ExtResource("9_275k0")]
-position = Vector2(40, 150)
-
-[node name="Tank2" parent="." instance=ExtResource("9_275k0")]
-position = Vector2(235, 22)
-
-[node name="Tank3" parent="." instance=ExtResource("9_275k0")]
-position = Vector2(58, -149)
