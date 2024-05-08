@@ -228,3 +228,12 @@ shape = SubResource("RectangleShape2D_wtgx1")
 
 [node name="ScoreKeeper" type="Node" parent="."]
 script = ExtResource("10_tfhsk")
+
+[node name="Tank" parent="." instance=ExtResource("9_275k0")]
+position = Vector2(40, 150)
+
+[node name="Tank2" parent="." instance=ExtResource("9_275k0")]
+position = Vector2(235, 22)
+
+[node name="Tank3" parent="." instance=ExtResource("9_275k0")]
+position = Vector2(58, -149)
