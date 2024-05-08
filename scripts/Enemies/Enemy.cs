@@ -1,4 +1,5 @@
 using System;
+using CanIDoThis.scripts.Components;
 using CanIDoThis.scripts.Contracts;
 using Godot;
 
@@ -16,7 +17,7 @@ public partial class Enemy : Area2D, IScoreable
 
     private void OnUnitHit(Area2D collidedWith)
     {
-        if (collidedWith is not Bullet bullet)
+        if (collidedWith is not Projectile bullet)
         {
             return;
         }
