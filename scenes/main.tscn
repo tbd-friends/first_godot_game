@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bonla5yyuajuc"]
+[gd_scene load_steps=17 format=3 uid="uid://bonla5yyuajuc"]
 
 [ext_resource type="Script" path="res://scripts/Managers/GameManager.cs" id="1_bj3dd"]
 [ext_resource type="Script" path="res://scripts/Camera.cs" id="4_4k5at"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/Player.cs" id="5_rk2nd"]
 [ext_resource type="Script" path="res://scripts/Cannon.cs" id="6_lolco"]
 [ext_resource type="PackedScene" uid="uid://pro4ia1fjapn" path="res://scenes/components/bullet.tscn" id="7_gbmpo"]
+[ext_resource type="PackedScene" uid="uid://fsiq4gw7yr7p" path="res://scenes/overlay/game_info.tscn" id="8_pmkmy"]
 [ext_resource type="PackedScene" uid="uid://ffqvjkdtdpuq" path="res://scenes/enemies/tank.tscn" id="9_275k0"]
 [ext_resource type="Script" path="res://scripts/Managers/ScoreKeeper.cs" id="10_tfhsk"]
 
@@ -166,7 +167,7 @@ layer_0/tile_data = PackedInt32Array(0, 131072, 9, 65536, 131072, 9, 131072, 131
 position = Vector2(140, 494)
 zoom = Vector2(2.8, 2.8)
 script = ExtResource("4_4k5at")
-MovementSpeed = 25.0
+MovementSpeed = 15.0
 
 [node name="Stopper" type="Area2D" parent="Camera2D"]
 
@@ -178,7 +179,7 @@ shape = SubResource("RectangleShape2D_t7yax")
 position = Vector2(-125, -502)
 scale = Vector2(0.988199, 0.993169)
 script = ExtResource("5_rk2nd")
-MovementSpeed = 85.0
+MovementSpeed = 45.0
 Cannon = NodePath("Cannon")
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D/Player"]
@@ -196,6 +197,9 @@ position = Vector2(133.576, 574.927)
 scale = Vector2(-3.46635, -81.517)
 script = ExtResource("6_lolco")
 BulletScene = ExtResource("7_gbmpo")
+
+[node name="GameInfo" parent="Camera2D" node_paths=PackedStringArray("ScoreKeeper") instance=ExtResource("8_pmkmy")]
+ScoreKeeper = NodePath("../../ScoreKeeper")
 
 [node name="Enemies" type="Node" parent="."]
 

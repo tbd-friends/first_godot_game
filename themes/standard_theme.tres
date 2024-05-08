@@ -4,4 +4,10 @@
 
 [resource]
 default_font = ExtResource("1_qcyt4")
-default_font_size = 12
+default_font_size = 16
+Label/colors/font_color = Color(0.870588, 0.172549, 0.172549, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.698039)
+Label/constants/shadow_offset_x = 2
+Label/constants/shadow_offset_y = 2
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_qcyt4")

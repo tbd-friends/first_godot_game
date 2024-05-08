@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CanIDoThis.scripts.Contracts;
 using Godot;
@@ -7,6 +8,7 @@ namespace CanIDoThis.scripts;
 
 public partial class ScoreKeeper : Node
 {
+    public event Action<int> ScoreChanged;
     public int Score { get; private set; }
 
     public override void _Ready()
@@ -24,5 +26,9 @@ public partial class ScoreKeeper : Node
     private void OnEnemyCollision(IScoreable enemy)
     {
         Score += enemy.Score;
+
+        enemy.CollisionOccured -= OnEnemyCollision;
+
+        ScoreChanged?.Invoke(Score);
     }
 }

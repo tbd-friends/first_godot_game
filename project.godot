@@ -26,6 +26,7 @@ project/assembly_name="CanIDoThis"
 
 [editor]
 
+movie_writer/movie_file="D:/dev/Games/Godot/testing/.movies/canidothis.avi"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
