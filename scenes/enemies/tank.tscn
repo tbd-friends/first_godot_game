@@ -11,9 +11,10 @@ region = Rect2(67, 34, 17, 16)
 atlas = ExtResource("2_d8wdu")
 region = Rect2(119, 0, 16, 17)
 
-[node name="Tank" type="Area2D" node_paths=PackedStringArray("_endingTimer")]
+[node name="Tank" type="Area2D" node_paths=PackedStringArray("_endingTimer", "_explosion")]
 script = ExtResource("1_epae0")
 _endingTimer = NodePath("Timer")
+_explosion = NodePath("Explosion")
 Score = 500
 
 [node name="Character" type="Sprite2D" parent="."]
@@ -24,12 +25,12 @@ texture = SubResource("AtlasTexture_32fxe")
 scale = Vector2(0.50216, 0.5)
 polygon = PackedVector2Array(8.5, 8, -6.9, 8, -8.5, 7.2, -8.5, -7.2, -6.9, -8, 8.5, -8)
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Explosion" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(0.8, 0.8)
 texture = SubResource("AtlasTexture_bs6dn")
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
 
 [connection signal="area_entered" from="." to="." method="OnUnitHit"]

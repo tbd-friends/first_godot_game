@@ -6,13 +6,12 @@ using Godot;
 public partial class Enemy : Area2D, IScoreable
 {
     [Export] private Timer _endingTimer;
+    [Export] private Sprite2D _explosion;
     public event Action<IScoreable> CollisionOccured;
-    private Sprite2D _explosion;
-
+    
     public override void _Ready()
     {
         _endingTimer.Timeout += QueueFree;
-        _explosion = GetNode<Sprite2D>("Explosion");
     }
 
     private void OnUnitHit(Area2D collidedWith)

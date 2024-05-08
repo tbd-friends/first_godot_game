@@ -1,4 +1,5 @@
-﻿using CanIDoThis.scripts.Contracts;
+﻿using CanIDoThis.scripts.Components;
+using CanIDoThis.scripts.Contracts;
 using Godot;
 
 namespace CanIDoThis.scripts;
@@ -9,7 +10,7 @@ public partial class Cannon : Node2D, IWeapon
 
     public void Fire()
     {
-        Bullet bullet = BulletScene.Instantiate<Bullet>();
+        Projectile bullet = BulletScene.Instantiate<Projectile>();
 
         bullet.SetOrigin(this);
 
