@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://pro4ia1fjapn"]
 
-[ext_resource type="Script" path="res://scripts/Components/Projectile.cs" id="1_w5hdk"]
+[ext_resource type="Script" path="res://scripts/Components/PlayerProjectile.cs" id="1_tysdh"]
 [ext_resource type="Texture2D" uid="uid://dwx44yscfymx4" path="res://tilemaps/tiles.png" id="2_l0b4b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2p1a3"]
@@ -10,7 +10,9 @@ region = Rect2(0, 0, 16, 16)
 [node name="Bullet" type="Area2D" node_paths=PackedStringArray("_notifier")]
 top_level = true
 scale = Vector2(1, 1.02825)
-script = ExtResource("1_w5hdk")
+collision_mask = 2
+monitoring = false
+script = ExtResource("1_tysdh")
 _notifier = NodePath("Notifier")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -22,3 +24,4 @@ scale = Vector2(0.131148, 0.264706)
 polygon = PackedVector2Array(5, 8, -5, 8, -5, -8, 5, -8)
 
 [node name="Notifier" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.3, 0.38901)

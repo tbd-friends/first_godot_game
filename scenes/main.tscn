@@ -175,11 +175,13 @@ MovementSpeed = 20.0
 position = Vector2(0, -104)
 shape = SubResource("RectangleShape2D_t7yax")
 
-[node name="Player" type="CharacterBody2D" parent="Camera2D" node_paths=PackedStringArray("Cannon")]
+[node name="Player" type="Area2D" parent="Camera2D" node_paths=PackedStringArray("Cannon")]
 position = Vector2(-125, -502)
 scale = Vector2(0.988199, 0.993169)
+collision_mask = 2
+monitorable = false
 script = ExtResource("5_rk2nd")
-MovementSpeed = 50.0
+MovementSpeed = 60.0
 Cannon = NodePath("Cannon")
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D/Player"]
@@ -194,9 +196,10 @@ polygon = PackedVector2Array(3.2, -8.8, 13.2, -4.8, 13.2, -3.7, 15.2, -2.7, 15.2
 
 [node name="Cannon" type="Node2D" parent="Camera2D/Player"]
 position = Vector2(133.576, 574.927)
-scale = Vector2(-3.46635, -81.517)
+rotation = -3.14159
+scale = Vector2(3.46635, 81.517)
 script = ExtResource("6_lolco")
-BulletScene = ExtResource("7_gbmpo")
+_bulletScene = ExtResource("7_gbmpo")
 
 [node name="GameInfo" parent="Camera2D" node_paths=PackedStringArray("ScoreKeeper") instance=ExtResource("8_pmkmy")]
 ScoreKeeper = NodePath("../../ScoreKeeper")
@@ -237,3 +240,5 @@ shape = SubResource("RectangleShape2D_wtgx1")
 
 [node name="ScoreKeeper" type="Node" parent="."]
 script = ExtResource("10_tfhsk")
+
+[connection signal="area_entered" from="Camera2D/Player" to="Camera2D/Player" method="OnUnitHit"]

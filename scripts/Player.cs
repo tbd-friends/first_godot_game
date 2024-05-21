@@ -1,12 +1,22 @@
 using CanIDoThis.scripts;
+using CanIDoThis.scripts.Components;
 using Godot;
 
-public partial class Player : CharacterBody2D
+public partial class Player : Area2D
 {
     [Export] private float MovementSpeed { get; set; } = 25.0f;
     [Export] private Cannon Cannon { get; set; }
     
-
+    private void OnUnitHit(Area2D collidedWith)
+    {
+        if (collidedWith is not Projectile projectile)
+        {
+            return;
+        }
+        
+        projectile.CollisionOccured();
+    }
+    
     public override void _PhysicsProcess(double delta)
     {
         if (Input.IsActionPressed("move_left"))

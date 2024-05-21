@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ffqvjkdtdpuq"]
+[gd_scene load_steps=7 format=3 uid="uid://ffqvjkdtdpuq"]
 
 [ext_resource type="Script" path="res://scripts/Enemies/Enemy.cs" id="1_epae0"]
 [ext_resource type="Texture2D" uid="uid://dwx44yscfymx4" path="res://tilemaps/tiles.png" id="2_d8wdu"]
+[ext_resource type="Script" path="res://scripts/Cannon.cs" id="3_f830r"]
+[ext_resource type="PackedScene" uid="uid://8v7hlsusdtgs" path="res://scenes/components/enemy_fire.tscn" id="4_iyq6c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32fxe"]
 atlas = ExtResource("2_d8wdu")
@@ -11,10 +13,15 @@ region = Rect2(67, 34, 17, 16)
 atlas = ExtResource("2_d8wdu")
 region = Rect2(119, 0, 16, 17)
 
-[node name="Tank" type="Area2D" node_paths=PackedStringArray("_endingTimer", "_explosion")]
+[node name="Tank" type="Area2D" node_paths=PackedStringArray("_endingTimer", "_firingTimer", "_explosion", "_cannon", "_notifier")]
+visibility_layer = 2
+collision_layer = 2
 script = ExtResource("1_epae0")
 _endingTimer = NodePath("Timer")
+_firingTimer = NodePath("FiringTimer")
 _explosion = NodePath("Explosion")
+_cannon = NodePath("Cannon")
+_notifier = NodePath("Notifier")
 Score = 500
 
 [node name="Character" type="Sprite2D" parent="."]
@@ -32,5 +39,17 @@ one_shot = true
 visible = false
 scale = Vector2(0.8, 0.8)
 texture = SubResource("AtlasTexture_bs6dn")
+
+[node name="Cannon" type="Node2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(1.00314, 1)
+script = ExtResource("3_f830r")
+_bulletScene = ExtResource("4_iyq6c")
+
+[node name="Notifier" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.4, 0.4)
+
+[node name="FiringTimer" type="Timer" parent="."]
+wait_time = 0.4
 
 [connection signal="area_entered" from="." to="." method="OnUnitHit"]

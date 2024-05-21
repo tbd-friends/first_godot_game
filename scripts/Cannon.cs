@@ -6,11 +6,11 @@ namespace CanIDoThis.scripts;
 
 public partial class Cannon : Node2D, IWeapon
 {
-    [Export] private PackedScene BulletScene;
+    [Export] private PackedScene _bulletScene;
 
     public void Fire()
     {
-        Projectile bullet = BulletScene.Instantiate<Projectile>();
+        Projectile bullet = _bulletScene.Instantiate<Projectile>();
 
         bullet.SetOrigin(this);
 
