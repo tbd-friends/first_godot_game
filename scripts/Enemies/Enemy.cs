@@ -46,7 +46,7 @@ public partial class Enemy : Area2D, IScoreable
         {
             return;
         }
-        
+
         projectile.CollisionOccured();
 
         CollisionOccured?.Invoke(this);

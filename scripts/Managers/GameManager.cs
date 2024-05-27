@@ -10,6 +10,8 @@ public partial class GameManager : Node
     [Export] private ScoreKeeper ScoreKeeper;
 
     [Export] private PackedScene GameOverScene;
+    
+    [Export] public Player Player { get; set; }
 
     private bool _isCameraStopped;
 
@@ -43,7 +45,7 @@ public partial class GameManager : Node
     {
         if (!_isCameraStopped)
         {
-            Camera.Position += Vector2.Up * Camera.MovementSpeed * (float)delta;
+            WorldMap.Position += Vector2.Down * Camera.MovementSpeed * (float)delta;
         }
     }
 

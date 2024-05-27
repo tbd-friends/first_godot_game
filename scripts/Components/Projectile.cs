@@ -10,6 +10,8 @@ public abstract partial class Projectile : Area2D
 
     [Export] protected VisibleOnScreenNotifier2D _notifier;
 
+    protected Vector2 FiringVector = Vector2.Up;
+    
     public override void _Ready()
     {
         _notifier.ScreenExited += ProjectileExitedScreen;

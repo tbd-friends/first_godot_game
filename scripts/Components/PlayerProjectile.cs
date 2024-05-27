@@ -8,9 +8,9 @@ public partial class PlayerProjectile : Projectile
     {
         GlobalPosition = weapon.GlobalPosition;
     }
-    
+
     public override void _PhysicsProcess(double delta)
     {
-        Position += Vector2.Up * Speed * (float)delta;
+        Position += FiringVector * Speed * (float)delta;
     }
 }
