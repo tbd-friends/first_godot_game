@@ -5,6 +5,7 @@ namespace CanIDoThis.scripts.Components;
 
 public abstract partial class Projectile : Area2D
 {
+    [Export] public float Damage { get; set; } = 10f;
     [Export] protected float Speed { get; set; } = 120f;
 
     [Export] protected VisibleOnScreenNotifier2D _notifier;
@@ -25,7 +26,7 @@ public abstract partial class Projectile : Area2D
     private void ProjectileExitedScreen()
     {
         _notifier.ScreenExited -= ProjectileExitedScreen;
-        
+
         QueueFree();
     }
 }

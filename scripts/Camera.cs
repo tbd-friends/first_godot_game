@@ -24,8 +24,4 @@ public partial class Camera : Camera2D
         
         OnCameraStopped?.Invoke();
     }
-
-    public override void _Process(double delta)
-    {
-    }
 }

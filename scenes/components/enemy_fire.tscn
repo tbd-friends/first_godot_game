@@ -12,6 +12,7 @@ scale = Vector2(1.014, 1)
 collision_layer = 2
 monitoring = false
 script = ExtResource("1_0tve8")
+Speed = 90.0
 _notifier = NodePath("Notifier")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

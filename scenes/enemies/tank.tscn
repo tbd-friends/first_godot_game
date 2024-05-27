@@ -50,6 +50,6 @@ _bulletScene = ExtResource("4_iyq6c")
 scale = Vector2(0.4, 0.4)
 
 [node name="FiringTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.9
 
 [connection signal="area_entered" from="." to="." method="OnUnitHit"]

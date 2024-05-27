@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://bonla5yyuajuc"]
+[gd_scene load_steps=18 format=3 uid="uid://bonla5yyuajuc"]
 
 [ext_resource type="Script" path="res://scripts/Managers/GameManager.cs" id="1_bj3dd"]
+[ext_resource type="PackedScene" uid="uid://btn7b13d3avxm" path="res://scenes/overlay/game_over.tscn" id="2_hklpj"]
 [ext_resource type="Script" path="res://scripts/Camera.cs" id="4_4k5at"]
 [ext_resource type="Texture2D" uid="uid://jvq5680o7fim" path="res://tilemaps/ships.png" id="4_grbjp"]
 [ext_resource type="Texture2D" uid="uid://dwx44yscfymx4" path="res://tilemaps/tiles.png" id="4_k1dcw"]
@@ -156,6 +157,7 @@ script = ExtResource("1_bj3dd")
 WorldMap = NodePath("WorldMap")
 Camera = NodePath("Camera2D")
 ScoreKeeper = NodePath("ScoreKeeper")
+GameOverScene = ExtResource("2_hklpj")
 
 [node name="WorldMap" type="TileMap" parent="."]
 scale = Vector2(0.518563, 0.59389)
@@ -175,7 +177,7 @@ MovementSpeed = 20.0
 position = Vector2(0, -104)
 shape = SubResource("RectangleShape2D_t7yax")
 
-[node name="Player" type="Area2D" parent="Camera2D" node_paths=PackedStringArray("Cannon")]
+[node name="Player" type="Area2D" parent="Camera2D" node_paths=PackedStringArray("Cannon") groups=["Players"]]
 position = Vector2(-125, -502)
 scale = Vector2(0.988199, 0.993169)
 collision_mask = 2
@@ -183,6 +185,7 @@ monitorable = false
 script = ExtResource("5_rk2nd")
 MovementSpeed = 60.0
 Cannon = NodePath("Cannon")
+Health = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D/Player"]
 position = Vector2(133.576, 581.975)

@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://btn7b13d3avxm"]
+
+[ext_resource type="FontFile" uid="uid://cmd2uvw3iwfty" path="res://themes/fonts/Roboto-Regular.ttf" id="1_ht3e7"]
+
+[node name="GameOver" type="CanvasLayer"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 799.0
+offset_bottom = 601.0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GameOver" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.905882, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_ht3e7")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]Game Over[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="@VScrollBar@37115" type="VScrollBar" parent="VBoxContainer/HBoxContainer/GameOver"]
+visible = false
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+max_value = 76.0
+step = 1.0
+page = 76.0
