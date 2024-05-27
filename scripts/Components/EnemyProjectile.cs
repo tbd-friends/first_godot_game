@@ -23,10 +23,4 @@ public partial class EnemyProjectile : Projectile
 
         GD.Print($"{Name} {FiringVector}");
     }
-
-
-    public override void _Draw()
-    {
-        DrawLine(GlobalPosition, _target.GlobalPosition, Colors.Red, 2f);
-    }
 }
