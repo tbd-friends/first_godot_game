@@ -42,7 +42,6 @@ texture = SubResource("AtlasTexture_bs6dn")
 
 [node name="Cannon" type="Node2D" parent="."]
 position = Vector2(0, 4)
-scale = Vector2(1.00314, 1)
 script = ExtResource("3_f830r")
 _bulletScene = ExtResource("4_iyq6c")
 

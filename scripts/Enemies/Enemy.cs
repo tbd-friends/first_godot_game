@@ -31,7 +31,7 @@ public partial class Enemy : Area2D, IScoreable
     private void OnVisibilityChanged()
     {
         if (_notifier.IsOnScreen())
-        {
+        {   
             _firingTimer.Start();
         }
         else

@@ -12,8 +12,12 @@ public partial class Cannon : Node2D, IWeapon
     {
         Projectile bullet = _bulletScene.Instantiate<Projectile>();
 
-        bullet.SetOrigin(this);
+        bullet.Visible = false;
 
         AddChild(bullet);
+        
+        bullet.SetOrigin(this);
+
+        bullet.Visible = true;
     }
 }

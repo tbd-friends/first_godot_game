@@ -20,15 +20,13 @@ public partial class EnemyProjectile : Projectile
         }
 
         FiringVector = GlobalPosition.DirectionTo(_target.GlobalPosition);
+
+        GD.Print($"{Name} {FiringVector}");
     }
 
-    public override void SetOrigin<TWeapon>(TWeapon weapon)
-    {
-        GlobalPosition = weapon.GlobalPosition;
-    }
 
-    public override void _PhysicsProcess(double delta)
+    public override void _Draw()
     {
-        Position += FiringVector * Speed * (float)delta;
+        DrawLine(GlobalPosition, _target.GlobalPosition, Colors.Red, 2f);
     }
 }
