@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 namespace CanIDoThis.scripts.Components;
 
@@ -18,5 +19,8 @@ public partial class EnemyProjectile : Projectile
         }
 
         FiringVector = GlobalPosition.DirectionTo(target.GlobalPosition);
+
+        LookAt(target.GlobalPosition);
+        Rotate(Single.Pi / 2);
     }
 }

@@ -165,6 +165,15 @@ position = Vector2(435.82, 747.613)
 [node name="Tank2" parent="WorldMap" groups=["Enemies"] instance=ExtResource("9_275k0")]
 position = Vector2(107.991, 799.811)
 
+[node name="Tank3" parent="WorldMap" instance=ExtResource("9_275k0")]
+position = Vector2(118, 387)
+
+[node name="Tank4" parent="WorldMap" instance=ExtResource("9_275k0")]
+position = Vector2(431, 276)
+
+[node name="Tank5" parent="WorldMap" instance=ExtResource("9_275k0")]
+position = Vector2(107, 18)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(267, 722)
 script = ExtResource("4_4k5at")
@@ -196,6 +205,8 @@ script = ExtResource("10_tfhsk")
 
 [node name="Player" parent="." instance=ExtResource("5_vyjxi")]
 position = Vector2(276, 958)
+MovementSpeed = 90.0
+Health = 100.0
 
 [node name="ProjectileManager" type="Node2D" parent="."]
 script = ExtResource("10_4vrsc")

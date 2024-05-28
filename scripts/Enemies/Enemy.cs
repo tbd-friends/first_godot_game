@@ -51,6 +51,7 @@ public partial class Enemy : Area2D, IScoreable
     public override void _Process(double delta)
     {
         LookAt(_gameManager.Player.GlobalPosition);
+        Rotate(-Single.Pi / 2);
     }
 
     private void OnFiringTimerTimeout()
