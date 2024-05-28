@@ -4,23 +4,19 @@ namespace CanIDoThis.scripts.Components;
 
 public partial class EnemyProjectile : Projectile
 {
-    private Player _target;
-
-    public override void _Ready()
+    public override void SetOrigin<TWeapon>(TWeapon weapon)
     {
-        base._Ready();
+        GlobalPosition = weapon.GlobalPosition;
 
-        _target = (GetTree().CurrentScene as GameManager)?.Player;
+        var target = (GetTree().CurrentScene as GameManager)?.Player;
 
-        if (_target is null)
+        if (target is null)
         {
             GD.Print("Player not found!");
 
             return;
         }
 
-        FiringVector = GlobalPosition.DirectionTo(_target.GlobalPosition);
-
-        GD.Print($"{Name} {FiringVector}");
+        FiringVector = GlobalPosition.DirectionTo(target.GlobalPosition);
     }
 }

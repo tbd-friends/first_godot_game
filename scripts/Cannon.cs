@@ -8,16 +8,19 @@ public partial class Cannon : Node2D, IWeapon
 {
     [Export] private PackedScene _bulletScene;
 
+    private ProjectileManager _projectileManager;
+
+    public override void _Ready()
+    {
+        _projectileManager = (GetTree().CurrentScene as GameManager)?.ProjectileManager;
+    }
+
     public void Fire()
     {
         Projectile bullet = _bulletScene.Instantiate<Projectile>();
 
-        bullet.Visible = false;
+        _projectileManager.AddChild(bullet);
 
-        AddChild(bullet);
-        
         bullet.SetOrigin(this);
-
-        bullet.Visible = true;
     }
 }

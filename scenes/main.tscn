@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bonla5yyuajuc"]
+[gd_scene load_steps=15 format=3 uid="uid://bonla5yyuajuc"]
 
 [ext_resource type="Script" path="res://scripts/Managers/GameManager.cs" id="1_bj3dd"]
 [ext_resource type="PackedScene" uid="uid://btn7b13d3avxm" path="res://scenes/overlay/game_over.tscn" id="2_hklpj"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dqhyn5nncgyqe" path="res://scenes/player.tscn" id="5_vyjxi"]
 [ext_resource type="PackedScene" uid="uid://fsiq4gw7yr7p" path="res://scenes/overlay/game_info.tscn" id="8_pmkmy"]
 [ext_resource type="PackedScene" uid="uid://ffqvjkdtdpuq" path="res://scenes/enemies/tank.tscn" id="9_275k0"]
+[ext_resource type="Script" path="res://scripts/ProjectileManager.cs" id="10_4vrsc"]
 [ext_resource type="Script" path="res://scripts/Managers/ScoreKeeper.cs" id="10_tfhsk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fcwx5"]
@@ -144,14 +145,14 @@ size = Vector2(284, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtgx1"]
 size = Vector2(272, 6)
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("WorldMap", "Camera", "ScoreKeeper", "Player")]
-position = Vector2(4, -1)
+[node name="Main" type="Node2D" node_paths=PackedStringArray("WorldMap", "Camera", "ScoreKeeper", "Player", "ProjectileManager")]
 script = ExtResource("1_bj3dd")
 WorldMap = NodePath("WorldMap")
 Camera = NodePath("Camera2D")
 ScoreKeeper = NodePath("ScoreKeeper")
 GameOverScene = ExtResource("2_hklpj")
 Player = NodePath("Player")
+ProjectileManager = NodePath("ProjectileManager")
 
 [node name="WorldMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_baepa")
@@ -165,14 +166,15 @@ position = Vector2(435.82, 747.613)
 position = Vector2(107.991, 799.811)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(251, 708)
+position = Vector2(267, 722)
 script = ExtResource("4_4k5at")
 MovementSpeed = 20.0
 
 [node name="Stopper" type="Area2D" parent="Camera2D"]
+position = Vector2(303, 109)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Stopper"]
-position = Vector2(0, -104)
+position = Vector2(-103, -105)
 shape = SubResource("RectangleShape2D_t7yax")
 
 [node name="GameInfo" parent="Camera2D" node_paths=PackedStringArray("ScoreKeeper") instance=ExtResource("8_pmkmy")]
@@ -193,5 +195,7 @@ shape = SubResource("RectangleShape2D_wtgx1")
 script = ExtResource("10_tfhsk")
 
 [node name="Player" parent="." instance=ExtResource("5_vyjxi")]
-position = Vector2(16, 390)
-scale = Vector2(0.935663, 1.00918)
+position = Vector2(276, 958)
+
+[node name="ProjectileManager" type="Node2D" parent="."]
+script = ExtResource("10_4vrsc")

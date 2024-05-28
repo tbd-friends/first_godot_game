@@ -11,16 +11,46 @@ public partial class Enemy : Area2D, IScoreable
     [Export] private Sprite2D _explosion;
     [Export] private Cannon _cannon;
     [Export] private VisibleOnScreenNotifier2D _notifier;
-
     public event Action<IScoreable> CollisionOccured;
+
+    private GameManager _gameManager;
+
+    private Color[] _colors =
+    [
+        Colors.Red,
+        Colors.Green,
+        Colors.Yellow,
+        Colors.Magenta,
+        Colors.Cyan,
+        Colors.Gray,
+        Colors.DarkGray,
+        Colors.LightGray,
+        Colors.Olive,
+        Colors.Teal,
+        Colors.Maroon,
+        Colors.Purple,
+        Colors.Aqua,
+        Colors.Lime,
+        Colors.Fuchsia,
+        Colors.Silver,
+        Colors.White,
+        Colors.Black
+    ];
 
     public override void _Ready()
     {
+        _gameManager = GetTree().CurrentScene as GameManager;
+
         _endingTimer.Timeout += QueueFree;
         _firingTimer.Timeout += OnFiringTimerTimeout;
 
         _notifier.ScreenEntered += OnVisibilityChanged;
         _notifier.ScreenExited += OnVisibilityChanged;
+    }
+
+    public override void _Process(double delta)
+    {
+        LookAt(_gameManager.Player.GlobalPosition);
     }
 
     private void OnFiringTimerTimeout()
@@ -31,7 +61,7 @@ public partial class Enemy : Area2D, IScoreable
     private void OnVisibilityChanged()
     {
         if (_notifier.IsOnScreen())
-        {   
+        {
             _firingTimer.Start();
         }
         else

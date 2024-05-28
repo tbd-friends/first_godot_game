@@ -11,7 +11,6 @@ region = Rect2(0, 0, 32, 32)
 
 [node name="Player" type="Area2D" node_paths=PackedStringArray("Cannon") groups=["Players"]]
 position = Vector2(1, 1)
-scale = Vector2(0.988199, 0.993169)
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_mx4y8")
@@ -20,19 +19,13 @@ Cannon = NodePath("Cannon")
 Health = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(133.576, 581.975)
-scale = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_v05ij")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(133.576, 581.976)
-scale = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(3.2, -8.8, 13.2, -4.8, 13.2, -3.7, 15.2, -2.7, 15.2, 5.2, 5.7, 5.2, 1.6, 11.2, -2.2, 11.2, -2.2, 9.3, -5.5, 5.2, -15.2, 5.2, -15.2, -2.7, -3.2, -8.7, -3.2, -11.2, 3.2, -11.2)
 
 [node name="Cannon" type="Node2D" parent="."]
-position = Vector2(133.576, 574.927)
 rotation = -3.14159
-scale = Vector2(3.46635, 81.517)
 script = ExtResource("3_4yx5f")
 _bulletScene = ExtResource("4_r1x7y")
 

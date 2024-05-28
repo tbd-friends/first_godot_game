@@ -10,8 +10,9 @@ public partial class GameManager : Node
     [Export] private ScoreKeeper ScoreKeeper;
 
     [Export] private PackedScene GameOverScene;
-    
+
     [Export] public Player Player { get; set; }
+    [Export] public ProjectileManager ProjectileManager { get; set; }
 
     private bool _isCameraStopped;
 
@@ -43,10 +44,10 @@ public partial class GameManager : Node
 
     public override void _Process(double delta)
     {
-        if (!_isCameraStopped)
-        {
-            WorldMap.Position += Vector2.Down * Camera.MovementSpeed * (float)delta;
-        }
+        // if (!_isCameraStopped)
+        // {
+        //     WorldMap.Position += Vector2.Down * Camera.MovementSpeed * (float)delta;
+        // }
     }
 
     public override void _ExitTree()
