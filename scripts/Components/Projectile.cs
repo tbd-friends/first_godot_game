@@ -14,6 +14,11 @@ public abstract partial class Projectile : Area2D
     {
         Notifier.ScreenExited += ProjectileExitedScreen;
     }
+    
+    public virtual void FireAt(Vector2 target)
+    {
+        FiringVector = target.Normalized();
+    }
 
     public virtual void SetOrigin<TWeapon>(TWeapon weapon)
         where TWeapon : Node2D

@@ -23,4 +23,15 @@ public partial class Cannon : Node2D, IWeapon
 
         bullet.SetOrigin(this);
     }
+
+    public void FireAt(Vector2 target)
+    {
+        Projectile bullet = _bulletScene.Instantiate<Projectile>();
+
+        _projectileManager.AddChild(bullet);
+
+        bullet.SetOrigin(this);
+
+        bullet.FireAt(target);
+    }
 }

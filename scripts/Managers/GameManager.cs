@@ -8,9 +8,8 @@ public partial class GameManager : Node
     [Export] private TileMap WorldMap;
     [Export] private Camera Camera;
     [Export] private ScoreKeeper ScoreKeeper;
-
+    [Export] private EnemyManager EnemyManager;
     [Export] private PackedScene GameOverScene;
-
     [Export] public Player Player { get; set; }
     [Export] public ProjectileManager ProjectileManager { get; set; }
 
@@ -25,12 +24,7 @@ public partial class GameManager : Node
 
     public override void _Ready()
     {
-        Player player = GetTree()
-            .GetNodesInGroup("Players")
-            .OfType<Player>()
-            .Single();
-
-        player.DeathOccurred += OnPlayerDeath;
+        Player.DeathOccurred += OnPlayerDeath;
     }
 
     private void OnPlayerDeath(Player player)
@@ -40,6 +34,8 @@ public partial class GameManager : Node
         var gameOverScene = GameOverScene.Instantiate();
 
         AddChild(gameOverScene);
+
+        EnemyManager.GameOver();
     }
 
     public override void _Process(double delta)
@@ -57,7 +53,7 @@ public partial class GameManager : Node
         base._ExitTree();
     }
 
-    private void OnCameraStopped()
+    private void OnCameraStopped(bool isFinal)
     {
         _isCameraStopped = true;
     }

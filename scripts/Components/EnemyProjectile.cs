@@ -9,18 +9,13 @@ public partial class EnemyProjectile : Projectile
     {
         GlobalPosition = weapon.GlobalPosition;
 
-        var target = (GetTree().CurrentScene as GameManager)?.Player;
-
-        if (target is null)
-        {
-            GD.Print("Player not found!");
-
-            return;
-        }
-
-        FiringVector = GlobalPosition.DirectionTo(target.GlobalPosition);
-
-        LookAt(target.GlobalPosition);
         Rotate(Single.Pi / 2);
+    }
+
+    public override void FireAt(Vector2 target)
+    {
+        FiringVector = GlobalPosition.DirectionTo(target);
+
+        LookAt(target);
     }
 }

@@ -13,7 +13,7 @@ region = Rect2(67, 34, 17, 16)
 atlas = ExtResource("2_d8wdu")
 region = Rect2(119, 0, 16, 17)
 
-[node name="Tank" type="Area2D" node_paths=PackedStringArray("_endingTimer", "_firingTimer", "_explosion", "_cannon", "_notifier")]
+[node name="Tank" type="Area2D" node_paths=PackedStringArray("_endingTimer", "_firingTimer", "_explosion", "_cannon", "_notifier") groups=["Enemies"]]
 visibility_layer = 2
 collision_layer = 2
 script = ExtResource("1_epae0")
