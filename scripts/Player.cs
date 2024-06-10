@@ -1,7 +1,9 @@
 using System;
+using System.Numerics;
 using CanIDoThis.scripts;
 using CanIDoThis.scripts.Components;
 using Godot;
+using Vector2 = Godot.Vector2;
 
 public partial class Player : Area2D
 {

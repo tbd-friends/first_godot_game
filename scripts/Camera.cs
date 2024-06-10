@@ -5,14 +5,14 @@ public partial class Camera : Camera2D
 {
     [Export] public float MovementSpeed { get; private set; } = 100.0f;
 
-    public event Action OnCameraStopped;
+    public event Action<bool> OnCameraStopped;
 
-    private Area2D _area2D;
+    private Area2D _cameraStop;
 
     public override void _Ready()
     {
-        _area2D = GetNode<Area2D>("Stopper");
-        _area2D.AreaEntered += OnAreaEntered;
+        _cameraStop = GetNode<Area2D>("Stopper");
+        _cameraStop.AreaEntered += OnAreaEntered;
     }
 
     private void OnAreaEntered(Area2D area)
@@ -21,7 +21,7 @@ public partial class Camera : Camera2D
         {
             return;
         }
-        
-        OnCameraStopped?.Invoke();
+
+        OnCameraStopped?.Invoke(true);
     }
 }

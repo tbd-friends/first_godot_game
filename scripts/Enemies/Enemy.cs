@@ -4,15 +4,17 @@ using CanIDoThis.scripts.Components;
 using CanIDoThis.scripts.Contracts;
 using Godot;
 
-public partial class Enemy : Area2D, IScoreable
+public partial class Enemy : Area2D, IEnemy
 {
     [Export] private Timer _endingTimer;
     [Export] private Timer _firingTimer;
     [Export] private Sprite2D _explosion;
     [Export] private Cannon _cannon;
     [Export] private VisibleOnScreenNotifier2D _notifier;
-
+    [Export] private Radar _radar;
     public event Action<IScoreable> CollisionOccured;
+
+    private Vector2 _currentTarget;
 
     public override void _Ready()
     {
@@ -23,9 +25,18 @@ public partial class Enemy : Area2D, IScoreable
         _notifier.ScreenExited += OnVisibilityChanged;
     }
 
+    public override void _Process(double delta)
+    {
+        _currentTarget = _radar.FetchTarget();
+
+        LookAt(_currentTarget);
+
+        Rotate(-Single.Pi / 2);
+    }
+
     private void OnFiringTimerTimeout()
     {
-        _cannon.Fire();
+        _cannon.FireAt(_currentTarget);
     }
 
     private void OnVisibilityChanged()
@@ -46,11 +57,12 @@ public partial class Enemy : Area2D, IScoreable
         {
             return;
         }
-        
+
         projectile.CollisionOccured();
 
         CollisionOccured?.Invoke(this);
 
+        _firingTimer.Stop();
         _endingTimer.Start();
         _explosion.Visible = true;
     }
@@ -70,4 +82,9 @@ public partial class Enemy : Area2D, IScoreable
     }
 
     [Export] public int Score { get; set; }
+
+    public void NotifyOnGameOver()
+    {
+        QueueFree();
+    }
 }

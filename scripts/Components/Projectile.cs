@@ -1,5 +1,4 @@
-﻿using CanIDoThis.scripts.Contracts;
-using Godot;
+﻿using Godot;
 
 namespace CanIDoThis.scripts.Components;
 
@@ -7,16 +6,30 @@ public abstract partial class Projectile : Area2D
 {
     [Export] public float Damage { get; set; } = 10f;
     [Export] protected float Speed { get; set; } = 120f;
+    [Export] protected VisibleOnScreenNotifier2D Notifier { get; set; }
 
-    [Export] protected VisibleOnScreenNotifier2D _notifier;
+    protected Vector2 FiringVector = Vector2.Up;
 
     public override void _Ready()
     {
-        _notifier.ScreenExited += ProjectileExitedScreen;
+        Notifier.ScreenExited += ProjectileExitedScreen;
+    }
+    
+    public virtual void FireAt(Vector2 target)
+    {
+        FiringVector = target.Normalized();
     }
 
-    public abstract void SetOrigin<TWeapon>(TWeapon weapon)
-        where TWeapon : Node2D, IWeapon;
+    public virtual void SetOrigin<TWeapon>(TWeapon weapon)
+        where TWeapon : Node2D
+    {
+        GlobalPosition = weapon.GlobalPosition;
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {   
+        Position += FiringVector * Speed * (float)delta;
+    }
 
     public void CollisionOccured()
     {
@@ -25,7 +38,7 @@ public abstract partial class Projectile : Area2D
 
     private void ProjectileExitedScreen()
     {
-        _notifier.ScreenExited -= ProjectileExitedScreen;
+        Notifier.ScreenExited -= ProjectileExitedScreen;
 
         QueueFree();
     }

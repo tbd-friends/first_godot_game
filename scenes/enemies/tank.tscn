@@ -13,7 +13,7 @@ region = Rect2(67, 34, 17, 16)
 atlas = ExtResource("2_d8wdu")
 region = Rect2(119, 0, 16, 17)
 
-[node name="Tank" type="Area2D" node_paths=PackedStringArray("_endingTimer", "_firingTimer", "_explosion", "_cannon", "_notifier")]
+[node name="Tank" type="Area2D" node_paths=PackedStringArray("_endingTimer", "_firingTimer", "_explosion", "_cannon", "_notifier") groups=["Enemies"]]
 visibility_layer = 2
 collision_layer = 2
 script = ExtResource("1_epae0")
@@ -25,11 +25,9 @@ _notifier = NodePath("Notifier")
 Score = 500
 
 [node name="Character" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_32fxe")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(0.50216, 0.5)
 polygon = PackedVector2Array(8.5, 8, -6.9, 8, -8.5, 7.2, -8.5, -7.2, -6.9, -8, 8.5, -8)
 
 [node name="Timer" type="Timer" parent="."]
@@ -37,12 +35,10 @@ one_shot = true
 
 [node name="Explosion" type="Sprite2D" parent="."]
 visible = false
-scale = Vector2(0.8, 0.8)
 texture = SubResource("AtlasTexture_bs6dn")
 
 [node name="Cannon" type="Node2D" parent="."]
 position = Vector2(0, 4)
-scale = Vector2(1.00314, 1)
 script = ExtResource("3_f830r")
 _bulletScene = ExtResource("4_iyq6c")
 

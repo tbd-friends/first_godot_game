@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 namespace CanIDoThis.scripts.Components;
 
@@ -6,11 +7,15 @@ public partial class EnemyProjectile : Projectile
 {
     public override void SetOrigin<TWeapon>(TWeapon weapon)
     {
-        Position = weapon.Position;
+        GlobalPosition = weapon.GlobalPosition;
+
+        Rotate(Single.Pi / 2);
     }
 
-    public override void _PhysicsProcess(double delta)
+    public override void FireAt(Vector2 target)
     {
-        Position += Vector2.Down * Speed * (float)delta;
+        FiringVector = GlobalPosition.DirectionTo(target);
+
+        LookAt(target);
     }
 }

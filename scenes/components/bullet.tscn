@@ -7,20 +7,17 @@
 atlas = ExtResource("2_l0b4b")
 region = Rect2(0, 0, 16, 16)
 
-[node name="Bullet" type="Area2D" node_paths=PackedStringArray("_notifier")]
+[node name="Bullet" type="Area2D" node_paths=PackedStringArray("Notifier")]
 top_level = true
-scale = Vector2(1, 1.02825)
 collision_mask = 2
 monitoring = false
 script = ExtResource("1_tysdh")
-_notifier = NodePath("Notifier")
+Notifier = NodePath("Notifier")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
 texture = SubResource("AtlasTexture_2p1a3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(0.131148, 0.264706)
 polygon = PackedVector2Array(5, 8, -5, 8, -5, -8, 5, -8)
 
 [node name="Notifier" type="VisibleOnScreenNotifier2D" parent="."]
