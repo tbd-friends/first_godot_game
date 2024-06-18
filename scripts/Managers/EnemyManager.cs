@@ -4,16 +4,24 @@ using System.Linq;
 using CanIDoThis.scripts.Contracts;
 using Godot;
 
-namespace CanIDoThis.scripts;
+namespace CanIDoThis.scripts.Managers;
 
 public partial class EnemyManager : Node
 {
     public event Action OnGameOver;
+    [Export] public Radar Radar { get; set; }
 
-    private List<IEnemy> _enemies = new();
+    private List<IEnemy> _enemies = [];
 
     public override void _Ready()
     {
+        LoadLevel();
+    }
+
+    private void LoadLevel()
+    {
+        _enemies?.Clear();
+
         _enemies = GetTree()
             .GetNodesInGroup("Enemies")
             .OfType<IEnemy>()
@@ -21,6 +29,8 @@ public partial class EnemyManager : Node
 
         foreach (var enemy in _enemies)
         {
+            enemy.Radar = Radar;
+
             OnGameOver += enemy.NotifyOnGameOver;
 
             enemy.CollisionOccured += NotifyCollision;
@@ -30,6 +40,8 @@ public partial class EnemyManager : Node
     public void GameOver()
     {
         OnGameOver?.Invoke();
+
+        _enemies.Clear();
     }
 
     private void NotifyCollision(IScoreable scored)
@@ -38,7 +50,7 @@ public partial class EnemyManager : Node
         {
             return;
         }
-        
+
         _enemies.Remove(enemy);
 
         enemy.CollisionOccured -= NotifyCollision;

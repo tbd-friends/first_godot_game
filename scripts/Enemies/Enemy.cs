@@ -1,8 +1,9 @@
 using System;
-using CanIDoThis.scripts;
 using CanIDoThis.scripts.Components;
 using CanIDoThis.scripts.Contracts;
 using Godot;
+
+namespace CanIDoThis.scripts.Enemies;
 
 public partial class Enemy : Area2D, IEnemy
 {
@@ -11,7 +12,7 @@ public partial class Enemy : Area2D, IEnemy
     [Export] private Sprite2D _explosion;
     [Export] private Cannon _cannon;
     [Export] private VisibleOnScreenNotifier2D _notifier;
-    [Export] private Radar _radar;
+    [Export] public Radar Radar { get; set; }
     public event Action<IScoreable> CollisionOccured;
 
     private Vector2 _currentTarget;
@@ -27,7 +28,7 @@ public partial class Enemy : Area2D, IEnemy
 
     public override void _Process(double delta)
     {
-        _currentTarget = _radar.FetchTarget();
+        _currentTarget = Radar.FetchTarget();
 
         LookAt(_currentTarget);
 

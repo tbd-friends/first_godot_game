@@ -2,4 +2,5 @@
 
 public interface IEnemy : ICareAboutGameOver, IScoreable
 {
+    Radar Radar { get; set; }
 }

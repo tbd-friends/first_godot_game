@@ -2,7 +2,7 @@
 
 namespace CanIDoThis.scripts;
 
-public partial class Radar : Node2D
+public partial class Radar : Node
 {
     private GameManager _gameManager;
 

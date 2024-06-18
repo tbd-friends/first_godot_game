@@ -17,11 +17,11 @@ public partial class Camera : Camera2D
 
     private void OnAreaEntered(Area2D area)
     {
-        if (area is not CameraStop { IsFinal: true })
+        if (area is not CameraStop cameraStop)
         {
             return;
         }
 
-        OnCameraStopped?.Invoke(true);
+        OnCameraStopped?.Invoke(cameraStop.IsFinal);
     }
 }

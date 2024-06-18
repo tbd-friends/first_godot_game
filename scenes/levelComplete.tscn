@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://6pa2uy4ynm4d"]
+
+[ext_resource type="Script" path="res://scripts/LevelComplete.cs" id="1_7pc52"]
+
+[node name="LevelComplete" type="CanvasLayer"]
+script = ExtResource("1_7pc52")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -57.5
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="InstructionLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Hit Fire to Continue[/center]"
+fit_content = true
