@@ -39,9 +39,11 @@ public partial class GameManager : Node
         LoadNextLevel();
     }
 
+    private bool ShouldLoadNextLevel() => _currentLevel < Levels.Count;
+
     private void LoadNextLevel()
     {
-        if (_currentLevel > Levels.Count - 1 || Levels[_currentLevel].Instantiate() is not Level level)
+        if (Levels[_currentLevel].Instantiate() is not Level level)
         {
             return;
         }
@@ -95,22 +97,35 @@ public partial class GameManager : Node
     {
         _isCameraStopped = true;
 
-        if (!isFinal) return;
-
-        var levelCompleteScene = LevelCompleteScene.Instantiate();
-
-        if (levelCompleteScene is not LevelComplete levelComplete)
-            return;
-
-        levelComplete.OnContinueToNextLevel += () =>
+        if (!isFinal)
         {
-            GetNode<LevelComplete>("LevelComplete").QueueFree();
+            return;
+        }
 
-            LoadNextLevel();
-        };
+        if (ShouldLoadNextLevel())
+        {
+            var levelCompleteScene = LevelCompleteScene.Instantiate();
 
-        AddChild(levelComplete);
+            if (levelCompleteScene is not LevelComplete levelComplete)
+                return;
 
-        EnemyManager.GameOver();
+            levelComplete.OnContinueToNextLevel += () =>
+            {
+                GetNode<LevelComplete>("LevelComplete").QueueFree();
+
+
+                LoadNextLevel();
+            };
+
+            AddChild(levelComplete);
+
+            EnemyManager.GameOver();
+        }
+        else
+        {
+            var gameOverScene = GameOverScene.Instantiate();
+
+            AddChild(gameOverScene);
+        }
     }
 }

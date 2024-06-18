@@ -28,7 +28,7 @@ ProjectileManager = NodePath("ProjectileManager")
 Levels = Array[PackedScene]([ExtResource("3_twc5l"), ExtResource("4_ba581")])
 
 [node name="ViewPort" type="Camera2D" parent="."]
-position = Vector2(299, -300)
+position = Vector2(300, -300)
 script = ExtResource("4_4k5at")
 MovementSpeed = 40.0
 
