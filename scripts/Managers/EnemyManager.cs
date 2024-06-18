@@ -13,12 +13,7 @@ public partial class EnemyManager : Node
 
     private List<IEnemy> _enemies = [];
 
-    public override void _Ready()
-    {
-        LoadLevel();
-    }
-
-    private void LoadLevel()
+    public void OnLevelChanged()
     {
         _enemies?.Clear();
 

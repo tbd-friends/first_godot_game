@@ -11,7 +11,7 @@ public partial class ScoreKeeper : Node
     public event Action<int> ScoreChanged;
     public int Score { get; private set; }
 
-    public override void _Ready()
+    public void OnLevelChanged()
     {
         IEnumerable<IScoreable> enemiesToSubscribeTo = GetTree()
             .GetNodesInGroup("Enemies")

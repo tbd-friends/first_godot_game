@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using CanIDoThis.scripts.Managers;
 using Godot;
@@ -16,14 +17,13 @@ public partial class GameManager : Node
     [Export] public Player Player { get; set; }
     [Export] public ProjectileManager ProjectileManager { get; set; }
     [Export] public Array<PackedScene> Levels { get; set; }
+    private event Action LevelChanged;
 
     private bool _isCameraStopped;
     private int _currentLevel = 0;
 
     public override void _EnterTree()
     {
-        LoadNextLevel();
-
         Camera.OnCameraStopped += OnCameraStopped;
 
         base._EnterTree();
@@ -32,6 +32,11 @@ public partial class GameManager : Node
     public override void _Ready()
     {
         Player.DeathOccurred += OnPlayerDeath;
+
+        LevelChanged += ScoreKeeper.OnLevelChanged;
+        LevelChanged += EnemyManager.OnLevelChanged;
+
+        LoadNextLevel();
     }
 
     private void LoadNextLevel()
@@ -52,6 +57,8 @@ public partial class GameManager : Node
 
         CurrentLevel = level;
         CurrentLevel.EnemyManager = EnemyManager;
+
+        LevelChanged?.Invoke();
 
         _currentLevel++;
 

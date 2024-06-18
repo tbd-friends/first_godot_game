@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpk38kjc4nsma"]
+[gd_scene load_steps=6 format=3 uid="uid://dpk38kjc4nsma"]
 
 [ext_resource type="Script" path="res://scripts/Level.cs" id="1_lan01"]
 [ext_resource type="TileSet" uid="uid://dtch3yce8hlv7" path="res://tilemaps/greenery.tres" id="2_4vdig"]
 [ext_resource type="Script" path="res://scripts/CameraStop.cs" id="3_jaiyp"]
+[ext_resource type="PackedScene" uid="uid://ffqvjkdtdpuq" path="res://scenes/enemies/tank.tscn" id="4_owcjp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xebw5"]
 size = Vector2(272, 6)
@@ -25,3 +26,12 @@ IsFinal = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldMap/Ending"]
 position = Vector2(7, -1090)
 shape = SubResource("RectangleShape2D_xebw5")
+
+[node name="Tank" parent="WorldMap" instance=ExtResource("4_owcjp")]
+position = Vector2(158, 110)
+
+[node name="Tank2" parent="WorldMap" instance=ExtResource("4_owcjp")]
+position = Vector2(507, -275)
+
+[node name="Tank3" parent="WorldMap" instance=ExtResource("4_owcjp")]
+position = Vector2(221, -246)
