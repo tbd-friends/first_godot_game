@@ -17,12 +17,12 @@ region = Rect2(119, 0, 16, 17)
 visibility_layer = 2
 collision_layer = 2
 script = ExtResource("1_epae0")
-_endingTimer = NodePath("Timer")
+_endingTimer = NodePath("EndingTimer")
 _firingTimer = NodePath("FiringTimer")
 _explosion = NodePath("Explosion")
 _cannon = NodePath("Cannon")
 _notifier = NodePath("Notifier")
-Score = 500
+ScoreValue = 25
 
 [node name="Character" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_32fxe")
@@ -30,7 +30,7 @@ texture = SubResource("AtlasTexture_32fxe")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(8.5, 8, -6.9, 8, -8.5, 7.2, -8.5, -7.2, -6.9, -8, 8.5, -8)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="EndingTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="Explosion" type="Sprite2D" parent="."]

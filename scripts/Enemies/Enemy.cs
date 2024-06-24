@@ -13,13 +13,15 @@ public partial class Enemy : Area2D, IEnemy
     [Export] private Cannon _cannon;
     [Export] private VisibleOnScreenNotifier2D _notifier;
     [Export] public Radar Radar { get; set; }
+    [Export] public int ScoreValue { get; set; }
     public event Action<IScoreable> CollisionOccured;
 
     private Vector2 _currentTarget;
+    private bool _isDead = false;
 
     public override void _Ready()
     {
-        _endingTimer.Timeout += QueueFree;
+        _endingTimer.Timeout += Shutdown;
         _firingTimer.Timeout += OnFiringTimerTimeout;
 
         _notifier.ScreenEntered += OnVisibilityChanged;
@@ -54,6 +56,11 @@ public partial class Enemy : Area2D, IEnemy
 
     private void OnUnitHit(Area2D collidedWith)
     {
+        if (_isDead)
+        {
+            return;
+        }
+
         if (collidedWith is not Projectile projectile)
         {
             return;
@@ -62,30 +69,27 @@ public partial class Enemy : Area2D, IEnemy
         projectile.CollisionOccured();
 
         CollisionOccured?.Invoke(this);
+        
+        _explosion.Visible = true;
 
         _firingTimer.Stop();
         _endingTimer.Start();
-        _explosion.Visible = true;
+        
+        _isDead = true;
     }
 
-    private void __ExitTree()
+    private void Shutdown()
     {
-        _endingTimer.Timeout -= QueueFree;
+        _notifier.ScreenEntered -= OnVisibilityChanged;
+        _notifier.ScreenExited -= OnVisibilityChanged;
+        _endingTimer.Timeout -= Shutdown;
         _firingTimer.Timeout -= OnFiringTimerTimeout;
 
-        _endingTimer.QueueFree();
-        _firingTimer.QueueFree();
-
-        _notifier.VisibilityChanged -= OnVisibilityChanged;
-
-        _endingTimer = null;
-        _notifier = null;
+        QueueFree();
     }
-
-    [Export] public int Score { get; set; }
 
     public void NotifyOnGameOver()
     {
-        QueueFree();
+        Shutdown();
     }
 }

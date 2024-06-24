@@ -71,11 +71,36 @@ public partial class GameManager : Node
     {
         _isCameraStopped = true;
 
-        var gameOverScene = GameOverScene.Instantiate();
-
-        AddChild(gameOverScene);
+        AddGameOverScene();
 
         EnemyManager.GameOver();
+    }
+
+    private void AddGameOverScene()
+    {
+        var gameOverScene = GameOverScene.Instantiate();
+
+        if (gameOverScene is GameOver gameOver)
+        {
+            gameOver.OnRestartGame += () =>
+            {
+                _currentLevel = 0;
+
+                GetNode<GameOver>("GameOver").QueueFree();
+
+                LoadNextLevel();
+            };
+
+            gameOver.OnEndOfGame += () =>
+            {
+                Player.QueueFree();
+                EnemyManager.QueueFree();
+                ProjectileManager.QueueFree();
+                ScoreKeeper.QueueFree();
+            };
+        }
+
+        AddChild(gameOverScene);
     }
 
     public override void _Process(double delta)
@@ -123,9 +148,7 @@ public partial class GameManager : Node
         }
         else
         {
-            var gameOverScene = GameOverScene.Instantiate();
-
-            AddChild(gameOverScene);
+            AddGameOverScene();
         }
     }
 }

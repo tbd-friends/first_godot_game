@@ -1,9 +1,12 @@
+using System;
 using Godot;
 
 namespace CanIDoThis.scripts;
 
 public partial class GameOver : Node
 {
+    public event Action OnRestartGame;
+    public event Action OnEndOfGame;
     [Export] private ScoreKeeper ScoreKeeper { get; set; }
 
     private RichTextLabel _scoreLabel;
@@ -20,7 +23,14 @@ public partial class GameOver : Node
 
         if (Input.IsActionPressed("quit"))
         {
+            OnEndOfGame?.Invoke();
+
             GetTree().Quit();
+        }
+
+        if (Input.IsActionPressed("shoot"))
+        {
+            OnRestartGame?.Invoke();
         }
     }
 }

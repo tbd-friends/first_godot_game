@@ -44,3 +44,10 @@ layout_mode = 2
 bbcode_enabled = true
 text = "[pulse freq=3.0][center]Hit ESC to Exit[/center][/pulse]"
 fit_content = true
+
+[node name="RetryGameLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[wave amp=75][center]Space To Try Again[/center][/wave]"
+fit_content = true

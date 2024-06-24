@@ -30,8 +30,6 @@ public partial class Player : Area2D
         }
 
         DeathOccurred?.Invoke(this);
-
-        QueueFree();
     }
 
     public override void _PhysicsProcess(double delta)

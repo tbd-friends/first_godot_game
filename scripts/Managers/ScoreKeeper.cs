@@ -25,7 +25,7 @@ public partial class ScoreKeeper : Node
 
     private void OnEnemyCollision(IScoreable enemy)
     {
-        Score += enemy.Score;
+        Score += enemy.ScoreValue;
 
         enemy.CollisionOccured -= OnEnemyCollision;
 
