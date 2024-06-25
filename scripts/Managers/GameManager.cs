@@ -120,12 +120,12 @@ public partial class GameManager : Node
 
     private void OnCameraStopped(bool isFinal)
     {
-        _isCameraStopped = true;
-
         if (!isFinal)
         {
             return;
         }
+        
+        _isCameraStopped = true;
 
         if (ShouldLoadNextLevel())
         {
@@ -137,7 +137,6 @@ public partial class GameManager : Node
             levelComplete.OnContinueToNextLevel += () =>
             {
                 GetNode<LevelComplete>("LevelComplete").QueueFree();
-
 
                 LoadNextLevel();
             };

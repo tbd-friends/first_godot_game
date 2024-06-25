@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bitxwessbb17r"]
+[gd_scene load_steps=10 format=3 uid="uid://bitxwessbb17r"]
 
 [ext_resource type="Texture2D" uid="uid://dwx44yscfymx4" path="res://tilemaps/tiles.png" id="1_8apxd"]
 [ext_resource type="Script" path="res://scripts/Level.cs" id="2_ogova"]
 [ext_resource type="Script" path="res://scripts/CameraStop.cs" id="2_se6xr"]
 [ext_resource type="PackedScene" uid="uid://ffqvjkdtdpuq" path="res://scenes/enemies/tank.tscn" id="3_d4bmm"]
+[ext_resource type="PackedScene" uid="uid://b6nxmshmsys4" path="res://scenes/enemies/aircraft.tscn" id="5_6sksv"]
+[ext_resource type="PackedScene" uid="uid://c421vc73ychsb" path="res://scenes/components/wave.tscn" id="5_45wi8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fcwx5"]
 resource_name = "tiles"
@@ -171,3 +173,23 @@ position = Vector2(102, -249)
 
 [node name="Tank6" parent="WorldMap" instance=ExtResource("3_d4bmm")]
 position = Vector2(384, -253)
+
+[node name="Wave1" parent="WorldMap" instance=ExtResource("5_45wi8")]
+
+[node name="Aircraft" parent="WorldMap/Wave1" instance=ExtResource("5_6sksv")]
+position = Vector2(109, 123)
+
+[node name="Aircraft2" parent="WorldMap/Wave1" instance=ExtResource("5_6sksv")]
+position = Vector2(65, 146)
+
+[node name="Aircraft3" parent="WorldMap/Wave1" instance=ExtResource("5_6sksv")]
+position = Vector2(146, 102)
+
+[node name="Wave2" parent="WorldMap" instance=ExtResource("5_45wi8")]
+position = Vector2(3, -297)
+
+[node name="Aircraft" parent="WorldMap/Wave2" instance=ExtResource("5_6sksv")]
+position = Vector2(390, 106)
+
+[node name="Aircraft2" parent="WorldMap/Wave2" instance=ExtResource("5_6sksv")]
+position = Vector2(433, 91)
