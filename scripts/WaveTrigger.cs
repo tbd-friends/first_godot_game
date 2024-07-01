@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CanIDoThis.scripts.Components;
 using CanIDoThis.scripts.Contracts;
 using Godot;
 
@@ -20,6 +21,11 @@ public partial class WaveTrigger : CameraStop
 
     private void OnAreaEntered(Area2D area)
     {
+        if (area is not CameraTrigger)
+        {
+            return;
+        }
+
         foreach (var element in _wave)
         {
             element.NotifyWaveTriggered();

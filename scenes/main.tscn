@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bonla5yyuajuc"]
+[gd_scene load_steps=15 format=3 uid="uid://bonla5yyuajuc"]
 
 [ext_resource type="Script" path="res://scripts/Managers/GameManager.cs" id="1_bj3dd"]
 [ext_resource type="PackedScene" uid="uid://btn7b13d3avxm" path="res://scenes/overlay/game_over.tscn" id="2_hklpj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/Camera.cs" id="4_4k5at"]
 [ext_resource type="PackedScene" uid="uid://dpk38kjc4nsma" path="res://scenes/level2.tscn" id="4_ba581"]
 [ext_resource type="PackedScene" uid="uid://dqhyn5nncgyqe" path="res://scenes/player.tscn" id="5_vyjxi"]
+[ext_resource type="Script" path="res://scripts/CameraTrigger.cs" id="7_i4snd"]
 [ext_resource type="PackedScene" uid="uid://fsiq4gw7yr7p" path="res://scenes/overlay/game_info.tscn" id="8_pmkmy"]
 [ext_resource type="Script" path="res://scripts/ProjectileManager.cs" id="10_4vrsc"]
 [ext_resource type="Script" path="res://scripts/Managers/ScoreKeeper.cs" id="10_tfhsk"]
@@ -32,8 +33,10 @@ position = Vector2(300, -300)
 script = ExtResource("4_4k5at")
 MovementSpeed = 40.0
 
-[node name="Stopper" type="Area2D" parent="ViewPort"]
-position = Vector2(-121, -292)
+[node name="Stopper" type="Area2D" parent="ViewPort" node_paths=PackedStringArray("Collider")]
+position = Vector2(-157, -290)
+script = ExtResource("7_i4snd")
+Collider = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewPort/Stopper"]
 shape = SubResource("RectangleShape2D_t7yax")

@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://jvq5680o7fim" path="res://tilemaps/ships.png" id="1_etjcx"]
 [ext_resource type="Script" path="res://scripts/Enemies/Aircraft.cs" id="1_i30bv"]
 [ext_resource type="Script" path="res://scripts/Cannon.cs" id="2_mby5w"]
+[ext_resource type="PackedScene" uid="uid://bh1jwfc1at8if" path="res://scenes/components/aircraft_fire.tscn" id="4_71b13"]
 [ext_resource type="Texture2D" uid="uid://dwx44yscfymx4" path="res://tilemaps/tiles.png" id="4_ipk4b"]
-[ext_resource type="PackedScene" uid="uid://pro4ia1fjapn" path="res://scenes/components/bullet.tscn" id="4_npm3n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a01ut"]
 atlas = ExtResource("1_etjcx")
@@ -14,12 +14,15 @@ region = Rect2(103, 170, 24, 22)
 atlas = ExtResource("4_ipk4b")
 region = Rect2(86, 1, 16, 16)
 
-[node name="Aircraft" type="Area2D" node_paths=PackedStringArray("_endingTimer", "_firingTimer", "_explosion", "_cannon") groups=["Enemies"]]
+[node name="Aircraft" type="Area2D" node_paths=PackedStringArray("EndingTimer", "FiringTimer", "Explosion", "Cannon", "Notifier") groups=["Enemies"]]
 script = ExtResource("1_i30bv")
-_endingTimer = NodePath("EndingTimer")
-_firingTimer = NodePath("FiringTimer")
-_explosion = NodePath("Explosion")
-_cannon = NodePath("Cannon")
+_speed = 75.0
+EndingTimer = NodePath("EndingTimer")
+FiringTimer = NodePath("FiringTimer")
+Explosion = NodePath("Explosion")
+Cannon = NodePath("Cannon")
+Notifier = NodePath("Notifier")
+ScoreValue = 50
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
@@ -33,14 +36,19 @@ polygon = PackedVector2Array(3.5, -7.5, 4.5, -7.5, 4.5, -6.5, 8.5, -6.5, 8.5, -5
 position = Vector2(0, 10)
 rotation = 3.14159
 script = ExtResource("2_mby5w")
-_bulletScene = ExtResource("4_npm3n")
+_bulletScene = ExtResource("4_71b13")
 
 [node name="FiringTimer" type="Timer" parent="."]
-wait_time = 0.7
+wait_time = 0.8
 
 [node name="EndingTimer" type="Timer" parent="."]
+wait_time = 0.12
 one_shot = true
 
 [node name="Explosion" type="Sprite2D" parent="."]
 visible = false
 texture = SubResource("AtlasTexture_6guaj")
+
+[node name="Notifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="OnUnitHit"]

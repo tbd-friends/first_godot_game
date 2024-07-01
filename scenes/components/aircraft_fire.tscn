@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh1jwfc1at8if"]
+
+[ext_resource type="PackedScene" uid="uid://8v7hlsusdtgs" path="res://scenes/components/enemy_fire.tscn" id="1_euo14"]
+[ext_resource type="Script" path="res://scripts/Components/NonTargetedProjectile.cs" id="2_smd8f"]
+
+[node name="AircraftFire" instance=ExtResource("1_euo14")]
+script = ExtResource("2_smd8f")
+Speed = 200.0

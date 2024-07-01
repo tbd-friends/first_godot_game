@@ -6,8 +6,9 @@
 size = Vector2(260, 13)
 
 [node name="Wave1" type="Area2D"]
+monitorable = false
 script = ExtResource("1_jobh5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(122, 180.5)
+position = Vector2(120, 0)
 shape = SubResource("RectangleShape2D_cg3r7")

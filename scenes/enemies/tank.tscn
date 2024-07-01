@@ -13,16 +13,15 @@ region = Rect2(67, 34, 17, 16)
 atlas = ExtResource("2_d8wdu")
 region = Rect2(119, 0, 16, 17)
 
-[node name="Tank" type="Area2D" node_paths=PackedStringArray("_endingTimer", "_firingTimer", "_explosion", "_cannon", "_notifier") groups=["Enemies"]]
+[node name="Tank" type="Area2D" node_paths=PackedStringArray("EndingTimer", "FiringTimer", "Explosion", "Cannon", "Notifier") groups=["Enemies"]]
 visibility_layer = 2
 collision_layer = 2
 script = ExtResource("1_epae0")
-_endingTimer = NodePath("EndingTimer")
-_firingTimer = NodePath("FiringTimer")
-_explosion = NodePath("Explosion")
-_cannon = NodePath("Cannon")
-_notifier = NodePath("Notifier")
-ScoreValue = 25
+EndingTimer = NodePath("EndingTimer")
+FiringTimer = NodePath("FiringTimer")
+Explosion = NodePath("Explosion")
+Cannon = NodePath("Cannon")
+Notifier = NodePath("Notifier")
 
 [node name="Character" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_32fxe")

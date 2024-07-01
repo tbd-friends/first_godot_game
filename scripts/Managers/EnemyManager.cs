@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CanIDoThis.scripts.Contracts;
+using CanIDoThis.scripts.Enemies;
 using Godot;
 
 namespace CanIDoThis.scripts.Managers;
@@ -24,7 +25,10 @@ public partial class EnemyManager : Node
 
         foreach (var enemy in _enemies)
         {
-            enemy.Radar = Radar;
+            if (enemy is PlayerTrackingEnemy tracking)
+            {
+                tracking.Radar = Radar;
+            }
 
             OnGameOver += enemy.NotifyOnGameOver;
 

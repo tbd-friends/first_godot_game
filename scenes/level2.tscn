@@ -29,9 +29,12 @@ shape = SubResource("RectangleShape2D_xebw5")
 
 [node name="Tank" parent="WorldMap" instance=ExtResource("4_owcjp")]
 position = Vector2(158, 110)
+ScoreValue = 25
 
 [node name="Tank2" parent="WorldMap" instance=ExtResource("4_owcjp")]
 position = Vector2(507, -275)
+ScoreValue = 25
 
 [node name="Tank3" parent="WorldMap" instance=ExtResource("4_owcjp")]
 position = Vector2(221, -246)
+ScoreValue = 25
