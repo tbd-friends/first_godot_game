@@ -22,7 +22,7 @@ FiringTimer = NodePath("FiringTimer")
 Explosion = NodePath("Explosion")
 Cannon = NodePath("Cannon")
 Notifier = NodePath("Notifier")
-ScoreValue = 50
+ScoreValue = 75
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159

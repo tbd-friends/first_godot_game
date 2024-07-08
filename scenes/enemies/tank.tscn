@@ -22,6 +22,7 @@ FiringTimer = NodePath("FiringTimer")
 Explosion = NodePath("Explosion")
 Cannon = NodePath("Cannon")
 Notifier = NodePath("Notifier")
+ScoreValue = 50
 
 [node name="Character" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_32fxe")

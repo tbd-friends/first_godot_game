@@ -71,9 +71,9 @@ public partial class GameManager : Node
     {
         _isCameraStopped = true;
 
-        AddGameOverScene();
-
         EnemyManager.GameOver();
+        
+        AddGameOverScene();
     }
 
     private void AddGameOverScene()
@@ -82,11 +82,17 @@ public partial class GameManager : Node
 
         if (gameOverScene is GameOver gameOver)
         {
+            ProjectileManager.ClearProjectiles();
+            
             gameOver.OnRestartGame += () =>
             {
                 _currentLevel = 0;
 
                 GetNode<GameOver>("GameOver").QueueFree();
+
+                ScoreKeeper.Reset();
+
+                Player.ReadyUp();
 
                 LoadNextLevel();
             };
@@ -124,7 +130,7 @@ public partial class GameManager : Node
         {
             return;
         }
-        
+
         _isCameraStopped = true;
 
         if (ShouldLoadNextLevel())

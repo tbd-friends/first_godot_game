@@ -40,7 +40,16 @@ public partial class EnemyManager : Node
     {
         OnGameOver?.Invoke();
 
-        _enemies.Clear();
+        foreach (var enemy in _enemies)
+        {
+            enemy.CollisionOccured -= NotifyCollision;
+
+            OnGameOver -= enemy.NotifyOnGameOver;
+            
+            ( enemy as Node)?.QueueFree();
+        }
+        
+        _enemies?.Clear();
     }
 
     private void NotifyCollision(IScoreable scored)

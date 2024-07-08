@@ -17,20 +17,12 @@ public partial class Cannon : Node2D, IWeapon
 
     public void Fire()
     {
-        Projectile bullet = _bulletScene.Instantiate<Projectile>();
-
-        _projectileManager.AddChild(bullet);
-
-        bullet.SetOrigin(this);
+        _projectileManager.SpawnProjectile(_bulletScene, this);
     }
 
     public void FireAt(Vector2 target)
     {
-        Projectile bullet = _bulletScene.Instantiate<Projectile>();
-
-        _projectileManager.AddChild(bullet);
-
-        bullet.SetOrigin(this);
+        Projectile bullet = _projectileManager.SpawnProjectile(_bulletScene, this);
 
         bullet.FireAt(target);
     }

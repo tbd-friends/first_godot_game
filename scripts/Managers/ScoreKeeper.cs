@@ -31,4 +31,11 @@ public partial class ScoreKeeper : Node
 
         ScoreChanged?.Invoke(Score);
     }
+
+    public void Reset()
+    {
+        Score = 0;
+        
+        ScoreChanged?.Invoke(Score);
+    }
 }

@@ -13,9 +13,26 @@ public partial class Player : Area2D
 
     public event Action<Player> DeathOccurred;
 
+    private bool _isDead = false;
+    private float _originalHealth;
+
+    public void ReadyUp()
+    {
+        Health = _originalHealth;
+
+        _isDead = false;
+
+        Visible = true;
+    }
+
+    public override void _Ready()
+    {
+        _originalHealth = Health;
+    }
+
     private void OnUnitHit(Area2D collidedWith)
     {
-        if (collidedWith is not Projectile projectile)
+        if (collidedWith is not Projectile projectile || _isDead)
         {
             return;
         }
@@ -28,6 +45,10 @@ public partial class Player : Area2D
         {
             return;
         }
+
+        _isDead = true;
+
+        Visible = false;
 
         DeathOccurred?.Invoke(this);
     }

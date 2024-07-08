@@ -9,6 +9,11 @@ public partial class Enemy : PlayerTrackingEnemy
 
     public override void _Process(double delta)
     {
+        if (IsDead)
+        {
+            return;
+        }
+
         _currentTarget = Radar.FetchTarget();
 
         LookAt(_currentTarget);
