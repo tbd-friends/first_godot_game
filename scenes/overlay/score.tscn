@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmatbm5lc0ukl"]
+
+[ext_resource type="Script" path="res://scripts/HighScore/Score.cs" id="1_awqkd"]
+
+[node name="Score" type="HBoxContainer" node_paths=PackedStringArray("PlayerInitials", "ScoreValue")]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("1_awqkd")
+PlayerInitials = NodePath("PlayerInitials")
+ScoreValue = NodePath("Score")
+
+[node name="PlayerInitials" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0.415686, 1)
+text = "AAA"
+
+[node name="Score" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0, 0, 0.415686, 1)
+text = "001000"
+horizontal_alignment = 3

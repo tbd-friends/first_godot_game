@@ -1,23 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://btn7b13d3avxm"]
+[gd_scene load_steps=4 format=3 uid="uid://btn7b13d3avxm"]
 
 [ext_resource type="FontFile" uid="uid://cmd2uvw3iwfty" path="res://themes/fonts/Roboto-Regular.ttf" id="1_ht3e7"]
 [ext_resource type="Script" path="res://scripts/GameOver.cs" id="1_jlvli"]
+[ext_resource type="PackedScene" uid="uid://bvkm5f2i64dgd" path="res://scenes/overlay/high_score.tscn" id="3_4dmw7"]
 
 [node name="GameOver" type="CanvasLayer"]
 script = ExtResource("1_jlvli")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -38.0
-offset_bottom = 38.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="GameOver" type="RichTextLabel" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="GameOver" type="RichTextLabel" parent="VBoxContainer/VBoxContainer"]
 clip_contents = false
 layout_mode = 2
 theme_override_colors/default_color = Color(0.905882, 0, 0, 1)
@@ -29,7 +30,7 @@ text = "[center]Game Over[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="ScoreLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="FinalScoreLabel" type="RichTextLabel" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/default_color = Color(0.305882, 0.733333, 0.133333, 1)
@@ -39,13 +40,20 @@ bbcode_enabled = true
 text = "[center]Score Goes Here[/center]"
 fit_content = true
 
-[node name="ExitLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="HighScore" parent="VBoxContainer" instance=ExtResource("3_4dmw7")]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ExitLabel" type="RichTextLabel" parent="VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[pulse freq=3.0][center]Hit ESC to Exit[/center][/pulse]"
 fit_content = true
 
-[node name="RetryGameLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="RetryGameLabel" type="RichTextLabel" parent="VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true

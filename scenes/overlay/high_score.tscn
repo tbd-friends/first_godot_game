@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvkm5f2i64dgd"]
+
+[ext_resource type="Script" path="res://scripts/HighScore/HighScore.cs" id="1_yc880"]
+[ext_resource type="PackedScene" uid="uid://bmatbm5lc0ukl" path="res://scenes/overlay/score.tscn" id="2_b7y4h"]
+
+[node name="HighScore" type="GridContainer"]
+custom_minimum_size = Vector2(250, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -25.0
+offset_right = 175.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_yc880")
+ScoreComponent = ExtResource("2_b7y4h")
+
+[node name="Scores" type="Container" parent="."]
+unique_name_in_owner = true
+layout_mode = 2

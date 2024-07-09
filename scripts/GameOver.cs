@@ -14,7 +14,8 @@ public partial class GameOver : Node
     public override void _Ready()
     {
         ScoreKeeper = GetTree().CurrentScene.GetNode<ScoreKeeper>("ScoreKeeper");
-        _scoreLabel = GetNode<RichTextLabel>("%ScoreLabel");
+        
+        _scoreLabel = GetNode<RichTextLabel>("%FinalScoreLabel");
     }
 
     public override void _Process(double delta)
